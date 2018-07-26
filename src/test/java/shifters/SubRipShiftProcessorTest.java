@@ -1,17 +1,17 @@
+package shifters;
+
+import exceptions.BadFormatException;
 import exceptions.EndBeforeStartException;
 import exceptions.NegativeFrameAfterShiftException;
-import exceptions.OutOfOrderFramesException;
 import org.junit.Test;
-import shifters.*;
-
 
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
-public class ShiftManagerSubRipTest {
+public class SubRipShiftProcessorTest {
 
-    private ShiftManager pr = new ShiftManager(new SubRipFrameReader(), new SubRipOutputWriter(), new SubRipFormatProcessor());
+    private SubRipShiftProcessor pr = new SubRipShiftProcessor();
 
     @Test
     public void shiftFrameCorrectCases() {
@@ -78,19 +78,20 @@ public class ShiftManagerSubRipTest {
     @Test(expected = EndBeforeStartException.class)
     public void shouldThrowEndBeforeStartExceptionWhenItHappens() {
         pr.shiftFrame("0\n" +
-                "00:01:14,880 --> 00:01:12,086\n" +
-                "What, there's no hotel?\n" +
-                "\n" ,
-                250,0);
-    }
-
-    @Test(expected = OutOfOrderFramesException.class)
-    public void shouldThrowOutOfOrderFramesWhenItHappens() {
-        pr.shiftFrame("12\n" +
-                        "00:01:10,880 --> 00:01:12,086\n" +
+                        "00:01:14,880 --> 00:01:12,086\n" +
                         "What, there's no hotel?\n" +
                         "\n" ,
                 250,0);
-
     }
+
+    @Test(expected = BadFormatException.class)
+    public void shouldThrowBadFormatExceptionWhenItHappens() {
+        pr.shiftFrame("0threissomemistake\n" +
+                        "00:01:14,880 --> 00:01:12,086\n" +
+                        "What, there's no hotel?\n" +
+                        "\n" ,
+                250,0);
+    }
+
+
 }

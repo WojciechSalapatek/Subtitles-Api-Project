@@ -1,6 +1,5 @@
 package shifters;
 
-import exceptions.BadFormatException;
 import exceptions.EndBeforeStartException;
 import exceptions.NegativeFrameAfterShiftException;
 import exceptions.OutOfOrderFramesException;
@@ -13,62 +12,26 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class ShiftManager {
-    private int currFrame = 0;
     private FrameReader reader;
     private OutputWriter writer;
-    private FormatProcessor formatProcessor;
+    private ShiftProcessor shiftProcessor;
 
-    public ShiftManager(FrameReader reader, OutputWriter writer, FormatProcessor formatProcessor) {
-        this.currFrame = 0;
+    public ShiftManager(FrameReader reader, OutputWriter writer, ShiftProcessor shiftProcessor) {
         this.reader = reader;
         this.writer = writer;
-        this.formatProcessor = formatProcessor;
+        this.shiftProcessor = shiftProcessor;
     }
 
     public void shiftSubtitlesBy(int offsetInMillis) throws IOException {
         String frame;
+        String newFrame;
         while ((frame=reader.readFrame())!= ""){
-            shiftFrame(frame, offsetInMillis, reader.getLineNumber());
-            currFrame++;
+           newFrame = shiftProcessor.shiftFrame(frame, offsetInMillis, reader.getLineNumber());
+           writer.writeFrame(frame);
         }
     }
 
-    public String shiftFrame(String frame, int offset, int startingLineNumber){
-        String start, newStart, end, newEnd;
-        formatProcessor.setFrame(frame, startingLineNumber);
-        if(formatProcessor.getFrameNumber() != currFrame) throw new OutOfOrderFramesException(startingLineNumber);
 
-        start = formatProcessor.getStart();
-        end = formatProcessor.getEnd();
-
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss,SSS");
-        Calendar cal = Calendar.getInstance();
-        Date d = null;
-
-        try {
-            d = df.parse(start);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        cal.setTime(d);
-        long startInMillis = cal.getTimeInMillis()+3600000;
-        if(offset<0 && startInMillis < Math.abs(offset)) throw new NegativeFrameAfterShiftException(startingLineNumber + 1);
-        cal.add(Calendar.MILLISECOND, offset);
-        newStart = df.format(cal.getTime());
-
-        try {
-            d = df.parse(end);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        cal.setTime(d);
-        if((cal.getTimeInMillis() + 3600000) < startInMillis) throw new EndBeforeStartException(startingLineNumber + 1);
-        cal.add(Calendar.MILLISECOND,offset);
-        newEnd = df.format(cal.getTime());
-
-        return formatProcessor.makeDelayedFrame(newStart, newEnd);
-    }
 
     public void setInputPath(String path) throws FileNotFoundException {
         reader.setInputPath(path);
