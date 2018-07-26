@@ -14,6 +14,10 @@ public class SubRipOutputWriter implements OutputWriter{
         writer = new BufferedWriter(new FileWriter(path));
     }
 
+    public void setOutputFile(File file) throws IOException {
+        writer = new BufferedWriter(new FileWriter(file));
+    }
+
     public void close() throws IOException {
         writer.close();
     }
