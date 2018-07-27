@@ -1,8 +1,8 @@
-package models.shifters;
+package models.IO;
 
 import java.io.*;
 
-public class SubRipOutputWriter implements OutputWriter{
+public class ToFileWriter implements OutputWriter{
 
     private BufferedWriter writer;
 

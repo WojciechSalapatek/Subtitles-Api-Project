@@ -1,5 +1,8 @@
 package models.shifters;
 
+import models.IO.FrameReader;
+import models.IO.OutputWriter;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -17,7 +20,7 @@ public class ShiftManager {
     public void shiftSubtitlesBy(int offsetInMillis) throws IOException {
         String frame;
         String newFrame;
-        while ((frame=reader.readFrame())!= ""){
+        while ((frame=reader.readFrame())!= "null\n"){
            newFrame = shiftProcessor.shiftFrame(frame, offsetInMillis, reader.getLineNumber());
            writer.writeFrame(frame);
         }

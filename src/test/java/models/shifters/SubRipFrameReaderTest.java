@@ -1,6 +1,7 @@
 package models.shifters;
 
-import org.junit.After;
+import models.IO.SubRipFrameReader;
+import models.IO.ToFileWriter;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -14,7 +15,7 @@ import static org.junit.Assert.*;
 public class SubRipFrameReaderTest {
 
     private SubRipFrameReader reader = new SubRipFrameReader();
-    private SubRipOutputWriter writer = new SubRipOutputWriter();
+    private ToFileWriter writer = new ToFileWriter();
 
     @Rule
     public TemporaryFolder tmp = new TemporaryFolder();
@@ -77,6 +78,7 @@ public class SubRipFrameReaderTest {
         readStartingLineNumbers.add(reader.getLineNumber());
         readFrames.add(reader.readFrame());
         readStartingLineNumbers.add(reader.getLineNumber());
+        readFrames.add(reader.readFrame());
         //then
         assertEquals("1554\n" +
                 "02:16:21,520 --> 02:16:24,888\n" +
@@ -93,6 +95,7 @@ public class SubRipFrameReaderTest {
                 "- Good morning.\n" +
                 "- Hi, welcome.\n" +
                 "\n", readFrames.get(2));
+        assertEquals("null\n",readFrames.get(3));
         assertEquals(1, (int) readStartingLineNumbers.get(0));
         assertEquals(6, (int) readStartingLineNumbers.get(1));
         assertEquals(11, (int) readStartingLineNumbers.get(2));

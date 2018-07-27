@@ -1,4 +1,4 @@
-package models.shifters;
+package models.IO;
 
 import java.io.*;
 
@@ -12,7 +12,7 @@ public class SubRipFrameReader implements FrameReader{
         StringBuilder sb = new StringBuilder();
         String line;
         lineNumber = newLineNumber;
-        while (!sb.toString().contains("\n\n")) {
+        while (!sb.toString().contains("\n\n") && !sb.toString().contains("null")) {
             line = reader.readLine();
             ++newLineNumber;
             sb.append(line);
