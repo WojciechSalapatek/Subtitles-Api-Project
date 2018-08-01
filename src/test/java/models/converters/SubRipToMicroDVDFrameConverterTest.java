@@ -1,5 +1,6 @@
 package models.converters;
 
+import models.exceptions.BadFormatException;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ public class SubRipToMicroDVDFrameConverterTest {
     private SubRipToMicroDVDFrameConverter converter = new SubRipToMicroDVDFrameConverter();
 
     @Test
-    public void canConvertFrame(){
+    public void canConvertFrames(){
         ArrayList<String> frames = new ArrayList<String>();
         ArrayList<String> converted = new ArrayList<String>();
         //given
@@ -43,7 +44,13 @@ public class SubRipToMicroDVDFrameConverterTest {
         assertEquals("{535}{574}Come in.\n", converted.get(2));
         assertEquals("{1147}{1218}Won in the FIFA lottery. More details in|the letter.\n", converted.get(3));
 
+    }
 
-
+    @Test(expected = BadFormatException.class)
+    public void shouldThrowBadFormattingExcWhenBadlyFormattedFrameGiven(){
+        converter.convertFrame("1\n" +
+                                      "00:00:00,100 --> mistake\n" +
+                                      "I should cause an exception\n" +
+                                      "\n",24,1);
     }
 }

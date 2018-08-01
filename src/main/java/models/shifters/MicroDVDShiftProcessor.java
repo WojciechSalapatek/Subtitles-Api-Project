@@ -9,8 +9,15 @@ import java.util.regex.Pattern;
 
 public class MicroDVDShiftProcessor implements ShiftProcessor {
 
-    private Pattern pattern = Pattern.compile("\\{(\\d+)\\}\\{(\\d+)\\}(.+)");
+    private Pattern pattern = Pattern.compile("\\{(\\d+)\\}\\{(\\d+)\\}(.+)\n");
 
+    /**
+     * Shifts frame in MicroDVD  format  by the offset of frames
+     * @param frame frame in MicroDVD format
+     * @param offset offset that will be used to shift frame
+     * @param startingLineNumber number of line in which frame begins in source
+     * @return shifted frame
+     */
     public String shiftFrame(String frame, int offset, int startingLineNumber) {
         Matcher matcher;
         int start, newStart, end, newEnd;
@@ -26,6 +33,6 @@ public class MicroDVDShiftProcessor implements ShiftProcessor {
 
         if(newStart < 0) throw new NegativeFrameAfterShiftException(startingLineNumber);
 
-        return "{" + Integer.toString(newStart) + "}{" + Integer.toString(newEnd) + "}" + matcher.group(3);
+        return "{" + Integer.toString(newStart) + "}{" + Integer.toString(newEnd) + "}" + matcher.group(3) + "\n";
     }
 }

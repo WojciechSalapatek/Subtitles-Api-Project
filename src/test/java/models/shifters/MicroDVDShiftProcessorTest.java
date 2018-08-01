@@ -18,14 +18,14 @@ public class MicroDVDShiftProcessorTest {
         //given
         ArrayList<String> expected = new ArrayList<String>();
 
-        String frame1 = "{1063}{1126}No, it's 16 Elwood Avenue.";
-        String frame2 = "{11263}{11324}- Seňor O'Reilly...|- Ah, when men come...?";
+        String frame1 = "{1063}{1126}No, it's 16 Elwood Avenue.\n";
+        String frame2 = "{11263}{11324}- Seňor O'Reilly...|- Ah, when men come...?\n";
 
-        expected.add("{1063}{1126}No, it's 16 Elwood Avenue.");
-        expected.add("{1163}{1226}No, it's 16 Elwood Avenue.");
-        expected.add("{763}{826}No, it's 16 Elwood Avenue.");
-        expected.add("{563}{626}No, it's 16 Elwood Avenue.");
-        expected.add("{12263}{12324}- Seňor O'Reilly...|- Ah, when men come...?");
+        expected.add("{1063}{1126}No, it's 16 Elwood Avenue.\n");
+        expected.add("{1163}{1226}No, it's 16 Elwood Avenue.\n");
+        expected.add("{763}{826}No, it's 16 Elwood Avenue.\n");
+        expected.add("{563}{626}No, it's 16 Elwood Avenue.\n");
+        expected.add("{12263}{12324}- Seňor O'Reilly...|- Ah, when men come...?\n");
 
 
         //when
@@ -46,19 +46,19 @@ public class MicroDVDShiftProcessorTest {
 
     @Test(expected = NegativeFrameAfterShiftException.class)
     public void shouldThrowNegativeFrameExceptionWhenItHappens() {
-        pr.shiftFrame("{21294}{21374}He made this mess,|he can clear it up.", -23*1000,0);
+        pr.shiftFrame("{21294}{21374}He made this mess,|he can clear it up.\n", -23*1000,0);
 
     }
 
     @Test(expected = EndBeforeStartException.class)
     public void shouldThrowEndBeforeStartExceptionWhenItHappens() {
-        pr.shiftFrame("{21294}{21174}He made this mess,|he can clear it up." ,
+        pr.shiftFrame("{21294}{21174}He made this mess,|he can clear it up.\n" ,
                 250,0);
     }
 
     @Test(expected = BadFormatException.class)
     public void shouldThrowBadFormatExceptionWhenItHappens() {
-        pr.shiftFrame("{21294}mistake!{21374}He made this mess,|he can clear it up." ,
+        pr.shiftFrame("{21294}mistake!{21374}He made this mess,|he can clear it up.\n" ,
                 250,0);
     }
 }
