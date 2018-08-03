@@ -1,0 +1,40 @@
+.side{
+    -fx-background-color: #333645;
+}
+
+.orlabel{
+    -fx-background-color: 	#FF8C00;
+}
+
+.menuBar{
+    -fx-background-color: 	#87CEFA;
+}
+
+.sideButton{
+    -fx-background-color: #333645;
+    -fx-background-radius: 0;
+    -fx-text-fill: #C4C4C4;
+    -fx-text-alignment: left;
+}
+
+.sideButton:pressed:hover{
+    -fx-background-color: #181818;
+    -fx-background-radius: 0;
+    -fx-text-fill: #C4C4C4;
+    -fx-text-alignment: left;
+}
+
+.sideButton:hover{
+    -fx-background-color: #202332;
+    -fx-background-radius: 0;
+    -fx-text-fill: #C4C4C4;
+    -fx-text-alignment: left;
+}
+
+.textLabel{
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+
+

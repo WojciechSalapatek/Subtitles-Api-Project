@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller">
+   <top>
+      <MenuBar styleClass="menuBar" stylesheets="@style.css" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <left>
+      <VBox prefHeight="371.0" prefWidth="150.0" styleClass="side" stylesheets="@style.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="60.0" prefWidth="203.0" styleClass="orlabel" text="Actions" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="21.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </Label>
+            <Button fx:id="loadFileButton" mnemonicParsing="false" onAction="#handleLoadButtonClick" prefHeight="42.0" prefWidth="150.0" styleClass="sideButton" text="Load File">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="convertButton" disable="true" layoutX="10.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleConvertButtonClick" prefHeight="42.0" prefWidth="150.0" styleClass="sideButton" text="Convert">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="shiftButton" disable="true" layoutX="10.0" layoutY="112.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="150.0" styleClass="sideButton" text="Shift">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="statisticsButton" disable="true" layoutX="10.0" layoutY="154.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="150.0" styleClass="sideButton" text="Statistics">
+               <font>
+                  <Font name="DejaVu Sans Bold" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="101.0" prefWidth="450.0">
+               <children>
+                  <ImageView fitHeight="131.0" fitWidth="149.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@subIcon.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="pathLabel" contentDisplay="CENTER" prefHeight="131.0" prefWidth="319.0" styleClass="textLabel" stylesheets="@style.css" text="FIle not loaded, load your file. " textAlignment="CENTER" textOverrun="CLIP">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
