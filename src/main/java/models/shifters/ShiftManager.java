@@ -3,6 +3,7 @@ package models.shifters;
 import models.IO.FrameReader;
 import models.IO.OutputWriter;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -49,12 +50,12 @@ public class ShiftManager {
     }
 
 
-    public void setInputPath(String path) throws FileNotFoundException {
-        reader.setInputPath(path);
+    public void setInputFile(File file) throws FileNotFoundException {
+        reader.setInputFile(file);
     }
 
 
-    public void setOutputPath(String path) throws IOException {
-        writer.setOutputPath(path);
+    public void setOutputFile(File file) throws IOException {
+        writer.setOutputFile(file);
     }
 }

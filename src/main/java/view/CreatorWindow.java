@@ -1,10 +1,13 @@
 package view;
 
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -32,14 +35,15 @@ public class CreatorWindow {
             window.close();
         });
 
-        Button button3 = new Button("cancel");
+        Button button3 = new Button("Cancel");
         button3.setOnAction(e -> {
             output = "null";
             window.close();
         });
-
+        Region region = new Region();
         buttons.getChildren().addAll(button1,button2, button3);
         buttons.setSpacing(10);
+        buttons.setPadding(new Insets(0,10,0,60));
         root.setCenter(new Label(text));
         root.setBottom(buttons);
 

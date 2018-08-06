@@ -14,8 +14,8 @@ import static org.junit.Assert.*;
 
 public class MicroDVDFrameReaderTest {
 
-    private MicroDVDFrameReader reader = new MicroDVDFrameReader();
-    private ToFileWriter writer = new ToFileWriter();
+    private MicroDVDFrameReader reader;
+    private ToFileWriter writer;
 
     @Rule
     public TemporaryFolder tmp = new TemporaryFolder();
@@ -24,10 +24,10 @@ public class MicroDVDFrameReaderTest {
     public void canReadSingleFrame() throws IOException {
         //given
         File file = tmp.newFile("test.srt");
-        writer.setOutputFile(file);
+        writer = new ToFileWriter(file);
         writer.writeFrame("{19538}{19573}Ouch!|You're hurting me!\n");
         writer.close();
-        reader.setInputFile(file);
+        reader = new MicroDVDFrameReader(file);
         //when
         String readFrame = reader.readFrame();
         int startingLineNumber = reader.getLineNumber();
@@ -42,13 +42,13 @@ public class MicroDVDFrameReaderTest {
     public void canReadMultipleFrames() throws IOException {
         //given
         File file = tmp.newFile("test.srt");
-        writer.setOutputFile(file);
+        writer = new ToFileWriter(file);
         writer.writeFrame("{19538}{19573}Ouch!|You're hurting me!\n");
 
         writer.writeFrame("{19579}{19602}What have you done|with my dining room door?\n");
         writer.writeFrame("{19608}{19643}- Where is it?|- I don't know.\n");
         writer.close();
-        reader.setInputFile(file);
+        reader = new MicroDVDFrameReader(file);
         //when
         ArrayList<String> readFrames = new ArrayList<String>();
         ArrayList<Integer> readStartingLineNumbers = new ArrayList<Integer>();

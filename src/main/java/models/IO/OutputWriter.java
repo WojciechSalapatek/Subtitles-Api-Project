@@ -6,11 +6,9 @@ import java.io.IOException;
 
 public interface OutputWriter {
 
-    void writeFrame(String frame) throws IOException;
+    void writeFrame(String frame);
 
-    void setOutputPath(String path) throws IOException;
-
-    void setOutputFile(File file) throws IOException;
+    void setOutputFile(File file);
 
     void close() throws IOException;
 }

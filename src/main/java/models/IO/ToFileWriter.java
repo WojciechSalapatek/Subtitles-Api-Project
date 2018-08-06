@@ -6,16 +6,28 @@ public class ToFileWriter implements OutputWriter{
 
     private BufferedWriter writer;
 
-    public void writeFrame(String frame) throws IOException {
-        writer.write(frame);
+    public ToFileWriter(File file){
+        try {
+            writer = new BufferedWriter(new FileWriter(file));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void setOutputPath(String path) throws IOException {
-        writer = new BufferedWriter(new FileWriter(path));
+    public void writeFrame(String frame) {
+        try {
+            writer.write(frame);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void setOutputFile(File file) throws IOException {
-        writer = new BufferedWriter(new FileWriter(file));
+    public void setOutputFile(File file) {
+        try {
+            writer = new BufferedWriter(new FileWriter(file));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void close() throws IOException {

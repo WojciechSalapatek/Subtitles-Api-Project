@@ -22,7 +22,10 @@ public class MicroDVDToSubRipFrameConverter implements FrameConverter {
             String start, end;
             String text;
             Matcher matcher = pattern.matcher(frame);
-            if(!matcher.matches()) throw new BadFormatException(startingLineNumber);
+            if(!matcher.matches()) {
+                System.out.println(frame);
+                throw new BadFormatException(startingLineNumber);
+            }
             start = parser.parseMillisToString(Integer.parseInt(matcher.group(1))*1000/fps);
             end = parser.parseMillisToString(Integer.parseInt(matcher.group(2))*1000/fps);
             text = matcher.group(3);

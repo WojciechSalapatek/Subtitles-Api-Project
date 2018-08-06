@@ -3,13 +3,11 @@ package models.IO;
 import java.io.*;
 
 public interface FrameReader {
-    String readFrame() throws IOException;
-
-    void setInputPath(String path) throws FileNotFoundException;
+    String readFrame();
 
     int getLineNumber();
 
-    void setInputFile(File file) throws IOException;
+    void setInputFile(File file);
 
     void close() throws IOException;
 }

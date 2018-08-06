@@ -14,8 +14,8 @@ import static org.junit.Assert.*;
 
 public class SubRipFrameReaderTest {
 
-    private SubRipFrameReader reader = new SubRipFrameReader();
-    private ToFileWriter writer = new ToFileWriter();
+    private SubRipFrameReader reader;
+    private ToFileWriter writer;
 
     @Rule
     public TemporaryFolder tmp = new TemporaryFolder();
@@ -24,14 +24,14 @@ public class SubRipFrameReaderTest {
     public void canReadSingleFrame() throws IOException {
         //given
         File file = tmp.newFile("test.srt");
-        writer.setOutputFile(file);
+        writer = new ToFileWriter(file);
         writer.writeFrame("1554\n" +
                 "02:16:21,520 --> 02:16:24,888\n" +
                 "Darling, you'll always be my baby boy,\n" +
                 "even when you're a Formula One champion.\n" +
                 "\n");
         writer.close();
-        reader.setInputFile(file);
+        reader = new SubRipFrameReader(file);
         //when
         String readFrame = reader.readFrame();
         int startingLineNumber = reader.getLineNumber();
@@ -50,7 +50,7 @@ public class SubRipFrameReaderTest {
     public void canReadMultipleFrames() throws IOException {
         //given
         File file = tmp.newFile("test.srt");
-        writer.setOutputFile(file);
+        writer = new ToFileWriter(file);
         writer.writeFrame("1554\n" +
                 "02:16:21,520 --> 02:16:24,888\n" +
                 "Darling, you'll always be my baby boy,\n" +
@@ -68,7 +68,7 @@ public class SubRipFrameReaderTest {
                 "- Hi, welcome.\n" +
                 "\n");
         writer.close();
-        reader.setInputFile(file);
+        reader = new SubRipFrameReader(file);
         //when
         ArrayList<String> readFrames = new ArrayList<String>();
         ArrayList<Integer> readStartingLineNumbers = new ArrayList<Integer>();
