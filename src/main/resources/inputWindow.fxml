@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InputController">
+   <center>
+      <VBox prefHeight="0.0" prefWidth="300.0" spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="30.0" prefWidth="300.0" text="             Please enter shift in milliseconds" textAlignment="CENTER" />
+            <HBox prefHeight="0.0" prefWidth="300.0">
+               <children>
+                  <TextField fx:id="inputField" prefHeight="71.0" prefWidth="171.0">
+                     <opaqueInsets>
+                        <Insets bottom="10.0" />
+                     </opaqueInsets>
+                  </TextField>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="10.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets left="75.0" right="10.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <HBox prefHeight="30.0" prefWidth="300.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <Region prefHeight="43.0" prefWidth="121.0" HBox.hgrow="ALWAYS">
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </Region>
+            <Button fx:id="okButton" mnemonicParsing="false" onAction="#handleOkButtonClick" text="Ok" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancelButtonClick" text="Cancel">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+</BorderPane>

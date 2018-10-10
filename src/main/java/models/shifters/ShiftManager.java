@@ -42,10 +42,9 @@ public class ShiftManager {
     public void shiftSubtitlesBy(int offset) throws IOException {
         String frame;
         String newFrame;
-        while ((frame=reader.readFrame())!= "null\n"){
+        while (!(frame=reader.readFrame()).equals("null\n")){
            newFrame = shiftProcessor.shiftFrame(frame, offset, reader.getLineNumber());
-           writer.writeFrame(frame);
-            MicroDVDShiftProcessor processor = new MicroDVDShiftProcessor();
+           writer.writeFrame(newFrame);
         }
     }
 

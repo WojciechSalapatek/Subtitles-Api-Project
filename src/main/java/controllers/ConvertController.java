@@ -16,11 +16,11 @@ public class ConvertController {
         OutputWriter writer;
         FrameConverter converter;
 
-        if(inputFormat == "SubRip") {
+        if(inputFormat.equals("SubRip")) {
             converter = new SubRipToMicroDVDFrameConverter();
             reader = new SubRipFrameReader(inputFile);
         }
-        else if (inputFormat == "MicroDVD") {
+        else if (inputFormat.equals("MicroDVD")) {
             converter = new MicroDVDToSubRipFrameConverter();
             reader = new MicroDVDFrameReader(inputFile);
         }

@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.FileChooser;
 import view.CreatorWindow;
+import view.InputWindow;
 
 import java.io.File;
 
@@ -28,7 +29,6 @@ public class Controller {
 
     private String format;
     private File inputFile;
-    private File outputFile;
 
     public void handleLoadButtonClick(){
         format = CreatorWindow.show("Load file","Which format is file in?","MicroDVD","SubRip");
@@ -54,6 +54,28 @@ public class Controller {
             if(outputFile != null && inputFile != null) {
                 ConvertController controller = new ConvertController();
                 controller.convert(inputFile, outputFile, format, outputFormat, 24);
+            }
+        }
+    }
+
+    public void handleShiftButtonClick(){
+        String output;
+        int shift;
+        output = InputWindow.show();
+        if(output != null && !output.equals("null")){
+            try{
+                shift = Integer.parseInt(output);
+                FileChooser saver = new FileChooser();
+                saver.setTitle("Save your output file");
+                File outputFile = saver.showSaveDialog(loadFileButton.getScene().getWindow());
+                if(outputFile != null && inputFile != null) {
+                    ShiftController controller = new ShiftController();
+                    controller.shift(inputFile, outputFile, format, shift);
+                }
+            } catch (Exception e){
+                //TODO show popup
+                System.out.println(e.getMessage());
+                return;
             }
         }
     }

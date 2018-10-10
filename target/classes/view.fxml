@@ -47,7 +47,7 @@
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="shiftButton" disable="true" layoutX="10.0" layoutY="112.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="150.0" styleClass="sideButton" text="Shift">
+            <Button fx:id="shiftButton" disable="true" layoutX="10.0" layoutY="112.0" mnemonicParsing="false" onAction="#handleShiftButtonClick" prefHeight="42.0" prefWidth="150.0" styleClass="sideButton" text="Shift">
                <font>
                   <Font name="DejaVu Sans Bold" size="13.0" />
                </font>

@@ -16,6 +16,7 @@ public class CreatorWindow {
     static String output;
 
     public static String show(String title, String text, String option1, String option2) {
+        output = "null";
         Stage window = new Stage();
         window.setTitle(title);
         window.initModality(Modality.APPLICATION_MODAL);

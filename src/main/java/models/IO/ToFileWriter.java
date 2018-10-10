@@ -31,6 +31,7 @@ public class ToFileWriter implements OutputWriter{
     }
 
     public void close() throws IOException {
+        writer.flush();
         writer.close();
     }
 }
